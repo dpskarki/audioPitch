@@ -10,6 +10,7 @@ import UIKit
 
 class PlayViewController: UIViewController {
 
+    var receivedAudio : RecordedAudio!
     override func viewDidLoad() {
         super.viewDidLoad()
 

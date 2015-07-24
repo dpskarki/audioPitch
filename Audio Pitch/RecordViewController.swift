@@ -12,6 +12,7 @@ import AVFoundation
 class RecordViewController: UIViewController, AVAudioRecorderDelegate {
 
     var audioRecorder : AVAudioRecorder!
+    var recordedAudio : RecordedAudio!
     @IBOutlet weak var pauseButton: UIButton!
     @IBOutlet weak var pauseText: UILabel!
     @IBOutlet weak var resumeButton: UIButton!
@@ -51,8 +52,6 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate {
         startText.enabled = false
         stopButton.enabled = true
         
-        
-        
         // finding and creating path for our audio
         let dirPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as! String
         let audioName = "testAudio.wav"
@@ -66,24 +65,43 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate {
         
         //initializing audio recorder with the file path we created
         audioRecorder = AVAudioRecorder(URL: filePath, settings: nil, error: nil)
-        // audioRecorder.delegate = self
+        audioRecorder.delegate = self
         audioRecorder.meteringEnabled = true
         audioRecorder.prepareToRecord()
         audioRecorder.record()
-        println("\(filePath)")
         
     }
     
-    
-   /* override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    func audioRecorderDidFinishRecording(recorder: AVAudioRecorder!, successfully flag: Bool) {
+       
+        //if recording successfull
+        if(flag) {
+            //inititalizing object of our model RecordedAudio and saving title and urla
+            recordedAudio = RecordedAudio()
+            recordedAudio.title = recorder.url.lastPathComponent
+            recordedAudio.filePathUrl = recorder.url
+            self.performSegueWithIdentifier("sendAudio", sender: recordedAudio)
+        }
+        else {
+            stopButton.enabled = false
+            startButton.enabled = true
+        }
         
+        
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        //confirming we are in the same segway
         if(segue.identifier == "sendAudio"){
-            println("Good Job mate!!")
+            let playSoundVC : PlayViewController = segue.destinationViewController as! PlayViewController
+            let data = sender as! RecordedAudio
+            playSoundVC.receivedAudio = data
         }
         else {
             println("Something wrong")
         }
-    } */
+    }
     
 
     @IBAction func stopRecord(sender: UIButton) {
@@ -92,8 +110,7 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate {
         var audioSession = AVAudioSession.sharedInstance()
         audioSession.setActive(false, error: nil)
         
-        // var data = "hello"
-        // self.performSegueWithIdentifier("sendAudio", sender: data)
+       
     }
 }
 

@@ -14,6 +14,7 @@
 		4F777DB61B60A3600098F19B /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F777DB41B60A3600098F19B /* LaunchScreen.xib */; };
 		4F777DC21B60A3600098F19B /* Audio_PitchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F777DC11B60A3600098F19B /* Audio_PitchTests.swift */; };
 		4F777DCC1B60AD390098F19B /* PlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F777DCB1B60AD390098F19B /* PlayViewController.swift */; };
+		4F91ED4D1B61FF7A00626D87 /* RecordedAudio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F91ED4C1B61FF7A00626D87 /* RecordedAudio.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +39,7 @@
 		4F777DC01B60A3600098F19B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4F777DC11B60A3600098F19B /* Audio_PitchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Audio_PitchTests.swift; sourceTree = "<group>"; };
 		4F777DCB1B60AD390098F19B /* PlayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayViewController.swift; sourceTree = "<group>"; };
+		4F91ED4C1B61FF7A00626D87 /* RecordedAudio.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordedAudio.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +82,7 @@
 			isa = PBXGroup;
 			children = (
 				4F777DAB1B60A3600098F19B /* AppDelegate.swift */,
+				4F91ED4C1B61FF7A00626D87 /* RecordedAudio.swift */,
 				4F777DCB1B60AD390098F19B /* PlayViewController.swift */,
 				4F777DAD1B60A3600098F19B /* RecordViewController.swift */,
 				4F777DAF1B60A3600098F19B /* Main.storyboard */,
@@ -215,6 +218,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F91ED4D1B61FF7A00626D87 /* RecordedAudio.swift in Sources */,
 				4F777DAE1B60A3600098F19B /* RecordViewController.swift in Sources */,
 				4F777DCC1B60AD390098F19B /* PlayViewController.swift in Sources */,
 				4F777DAC1B60A3600098F19B /* AppDelegate.swift in Sources */,
@@ -413,6 +417,7 @@
 				4F777DC71B60A3600098F19B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4F777DC81B60A3600098F19B /* Build configuration list for PBXNativeTarget "Audio PitchTests" */ = {
 			isa = XCConfigurationList;
@@ -421,6 +426,7 @@
 				4F777DCA1B60A3600098F19B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
