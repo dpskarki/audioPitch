@@ -9,9 +9,9 @@
 import UIKit
 import AVFoundation
 
-class RecordViewController: UIViewController {
+class RecordViewController: UIViewController, AVAudioRecorderDelegate {
 
-    var audioRecorder : AVAudioPlayer!
+    var audioRecorder : AVAudioRecorder!
     @IBOutlet weak var pauseButton: UIButton!
     @IBOutlet weak var pauseText: UILabel!
     @IBOutlet weak var resumeButton: UIButton!
@@ -49,6 +49,7 @@ class RecordViewController: UIViewController {
     @IBAction func startRecord(sender: UIButton) {
         startButton.enabled = false
         startText.enabled = false
+        stopButton.enabled = true
         
         
         
@@ -58,8 +59,41 @@ class RecordViewController: UIViewController {
         let pathArray = [dirPath, audioName]
         let filePath = NSURL.fileURLWithPathComponents(pathArray)
         
+        //creating an audio session
+        var session = AVAudioSession.sharedInstance()
+        session.setCategory(AVAudioSessionCategoryPlayAndRecord, error: nil)
+        
+        
+        //initializing audio recorder with the file path we created
+        audioRecorder = AVAudioRecorder(URL: filePath, settings: nil, error: nil)
+        // audioRecorder.delegate = self
+        audioRecorder.meteringEnabled = true
+        audioRecorder.prepareToRecord()
+        audioRecorder.record()
+        println("\(filePath)")
+        
     }
     
+    
+   /* override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        if(segue.identifier == "sendAudio"){
+            println("Good Job mate!!")
+        }
+        else {
+            println("Something wrong")
+        }
+    } */
+    
 
+    @IBAction func stopRecord(sender: UIButton) {
+        
+        audioRecorder.stop()
+        var audioSession = AVAudioSession.sharedInstance()
+        audioSession.setActive(false, error: nil)
+        
+        // var data = "hello"
+        // self.performSegueWithIdentifier("sendAudio", sender: data)
+    }
 }
 
