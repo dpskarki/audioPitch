@@ -126,36 +126,54 @@
                                 <state key="normal" image="chipmunk2x-iphone">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="playChipmunk:" destination="Hkm-kH-hLK" eventType="touchUpInside" id="0UA-nA-jt1"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kAp-tP-mLg">
                                 <rect key="frame" x="179" y="94" width="100" height="100"/>
                                 <state key="normal" image="fast2x-iphone">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="playFastAudio:" destination="Hkm-kH-hLK" eventType="touchUpInside" id="0ZO-Lk-7PO"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5bC-73-C2F">
                                 <rect key="frame" x="49" y="368" width="80" height="80"/>
                                 <state key="normal" image="echo">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="playEcho:" destination="Hkm-kH-hLK" eventType="touchUpInside" id="U1d-EA-IKN"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qUX-j4-xQy">
                                 <rect key="frame" x="179" y="231" width="100" height="100"/>
                                 <state key="normal" image="darthvader2x-iphone">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="playDarth:" destination="Hkm-kH-hLK" eventType="touchUpInside" id="chg-zO-f1V"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6ck-Ot-L0m">
                                 <rect key="frame" x="189" y="368" width="80" height="80"/>
                                 <state key="normal" image="reverb">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="playReverb:" destination="Hkm-kH-hLK" eventType="touchUpInside" id="3HX-3X-Jfh"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BOP-MH-ete">
                                 <rect key="frame" x="41" y="94" width="100" height="100"/>
                                 <state key="normal" image="slow2x-iphone">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="playSlowAudio:" destination="Hkm-kH-hLK" eventType="touchUpInside" id="HE1-v1-wss"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Slow" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jf2-H7-MOk">
                                 <rect key="frame" x="70" y="202" width="38" height="21"/>

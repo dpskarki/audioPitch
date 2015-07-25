@@ -76,7 +76,7 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate {
        
         //if recording successfull
         if(flag) {
-            //inititalizing object of our model RecordedAudio and saving title and urla
+            //inititalizing object of our model RecordedAudio and saving title and url
             recordedAudio = RecordedAudio()
             recordedAudio.title = recorder.url.lastPathComponent
             recordedAudio.filePathUrl = recorder.url
@@ -92,7 +92,7 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
-        //confirming we are in the same segway
+        //confirming, its the same segway
         if(segue.identifier == "sendAudio"){
             let playSoundVC : PlayViewController = segue.destinationViewController as! PlayViewController
             let data = sender as! RecordedAudio
