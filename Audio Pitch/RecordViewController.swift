@@ -26,7 +26,13 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+        pauseButton.enabled = false
+        resumeButton.enabled = false
+        pauseText.enabled = false
+        resumeText.enabled = false
+        stopButton.enabled = false
+        stopText.enabled = false
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -36,14 +42,9 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate {
     
     
     override func viewWillAppear(animated: Bool) {
-        pauseButton.enabled = false
-        resumeButton.enabled = false
-        pauseText.enabled = false
-        resumeText.enabled = false
-        stopButton.enabled = false
-        stopText.enabled = false
-    
         
+        startButton.enabled = true
+        startText.enabled = true
     }
 
     
@@ -51,6 +52,10 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate {
         startButton.enabled = false
         startText.enabled = false
         stopButton.enabled = true
+        stopText.enabled = true
+        pauseButton.enabled = true
+        pauseText.enabled = true
+        
         
         // finding and creating path for our audio
         let dirPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as! String
@@ -103,12 +108,30 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate {
         }
     }
     
+    
+    @IBAction func pauseRecord(sender: UIButton) {
+        audioRecorder.pause()
+        pauseButton.enabled = false
+        pauseText.enabled = false
+        resumeButton.enabled = true
+        resumeText.enabled = true
+    }
+    
 
+    @IBAction func resumeRecord(sender: UIButton) {
+        audioRecorder.record()
+        resumeButton.enabled = false
+        resumeText.enabled = false
+        
+    }
+    
     @IBAction func stopRecord(sender: UIButton) {
         
         audioRecorder.stop()
         var audioSession = AVAudioSession.sharedInstance()
         audioSession.setActive(false, error: nil)
+        stopButton.enabled = false
+        stopText.enabled = false
         
        
     }

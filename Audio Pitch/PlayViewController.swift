@@ -87,21 +87,60 @@ class PlayViewController: UIViewController {
     
     
     @IBAction func playEcho(sender: UIButton) {
+        
+        audioPlayer.stop()
+        audioEngine.stop()
+        audioEngine.reset()
+        
+        var echoNode = AVAudioUnitDelay()
+        echoNode.delayTime = NSTimeInterval(0.3)
+        
+        var audioPlayerNode = AVAudioPlayerNode()
+        audioEngine.attachNode(audioPlayerNode)
+        
+        // Attach the audio effect node corresponding to the user selected effect
+        audioEngine.attachNode(echoNode)
+        
+        // Connect Player --> AudioEffect
+        audioEngine.connect(audioPlayerNode, to: echoNode, format: nil)
+        // Connect AudioEffect --> Output
+        audioEngine.connect(echoNode, to: audioEngine.outputNode, format: nil)
+        
+        audioPlayerNode.scheduleFile(audioFile, atTime: nil, completionHandler:nil)
+        
+        audioEngine.startAndReturnError(nil)
+        
+        audioPlayerNode.play()
+
     }
     
     
     @IBAction func playReverb(sender: UIButton) {
+        audioPlayer.stop()
+        audioEngine.stop()
+        audioEngine.reset()
+        
+        var audioPlayerNode = AVAudioPlayerNode()
+        audioEngine.attachNode(audioPlayerNode)
+        
+        var audioReverb = AVAudioUnitReverb()
+        audioReverb.loadFactoryPreset( AVAudioUnitReverbPreset.Cathedral)
+        audioReverb.wetDryMix = 60
+       
+        // Attach the audio effect node corresponding to the user selected effect
+        audioEngine.attachNode(audioReverb)
+        
+        // Connect Player --> AudioEffect
+        audioEngine.connect(audioPlayerNode, to: audioReverb, format: nil)
+        
+        // Connect AudioEffect --> Output
+        audioEngine.connect(audioReverb, to: audioEngine.outputNode, format: nil)
+        
+        audioPlayerNode.scheduleFile(audioFile, atTime: nil, completionHandler:nil)
+        
+        audioEngine.startAndReturnError(nil)
+        
+        audioPlayerNode.play()
     }
     
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
-}
+   }
