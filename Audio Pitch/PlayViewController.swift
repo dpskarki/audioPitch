@@ -16,6 +16,9 @@ class PlayViewController: UIViewController {
     var audioEngine: AVAudioEngine!
     var audioFile: AVAudioFile!
     
+    //global variable initializing for AVAudioPlayerNode
+    var audioPlayerNode: AVAudioPlayerNode!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -62,15 +65,10 @@ class PlayViewController: UIViewController {
         
     }
     
+    
     func playAudioWithVariablePitch(pitch : Float) {
         
-        audioPlayer.stop()
-        audioEngine.stop()
-        audioEngine.reset()
-        
-        var audioPlayerNode = AVAudioPlayerNode()
-        audioEngine.attachNode(audioPlayerNode)
-        
+        audioEngineFoundation()
         var changePitchEffect = AVAudioUnitTimePitch()
         changePitchEffect.pitch = pitch
         audioEngine.attachNode(changePitchEffect)
@@ -78,51 +76,34 @@ class PlayViewController: UIViewController {
         audioEngine.connect(audioPlayerNode, to: changePitchEffect, format: nil)
         audioEngine.connect(changePitchEffect, to: audioEngine.outputNode, format: nil)
         
-        audioPlayerNode.scheduleFile(audioFile, atTime: nil, completionHandler: nil)
-        audioEngine.startAndReturnError(nil)
+        audioPlaying()
         
-        audioPlayerNode.play()
-    }
+        }
     
     
+   
     
     @IBAction func playEcho(sender: UIButton) {
         
-        audioPlayer.stop()
-        audioEngine.stop()
-        audioEngine.reset()
+        audioEngineFoundation()
         
         var echoNode = AVAudioUnitDelay()
         echoNode.delayTime = NSTimeInterval(0.3)
-        
-        var audioPlayerNode = AVAudioPlayerNode()
-        audioEngine.attachNode(audioPlayerNode)
-        
-        // Attach the audio effect node corresponding to the user selected effect
         audioEngine.attachNode(echoNode)
         
-        // Connect Player --> AudioEffect
+        // Connect Player to AudioEffect node
         audioEngine.connect(audioPlayerNode, to: echoNode, format: nil)
-        // Connect AudioEffect --> Output
+        // Connect AudioEffect to Output node
         audioEngine.connect(echoNode, to: audioEngine.outputNode, format: nil)
         
-        audioPlayerNode.scheduleFile(audioFile, atTime: nil, completionHandler:nil)
-        
-        audioEngine.startAndReturnError(nil)
-        
-        audioPlayerNode.play()
+        audioPlaying()
 
     }
     
     
     @IBAction func playReverb(sender: UIButton) {
-        audioPlayer.stop()
-        audioEngine.stop()
-        audioEngine.reset()
-        
-        var audioPlayerNode = AVAudioPlayerNode()
-        audioEngine.attachNode(audioPlayerNode)
-        
+       
+        audioEngineFoundation()
         var audioReverb = AVAudioUnitReverb()
         audioReverb.loadFactoryPreset( AVAudioUnitReverbPreset.Cathedral)
         audioReverb.wetDryMix = 60
@@ -136,11 +117,36 @@ class PlayViewController: UIViewController {
         // Connect AudioEffect --> Output
         audioEngine.connect(audioReverb, to: audioEngine.outputNode, format: nil)
         
-        audioPlayerNode.scheduleFile(audioFile, atTime: nil, completionHandler:nil)
+        audioPlaying()
+    }
+    
+    
+    
+    //starting audio engine and attaching audioPlayer node to audio engine
+    func audioEngineFoundation() {
+        audioPlayer.stop()
+        audioEngine.stop()
+        audioEngine.reset()
         
+        audioPlayerNode = AVAudioPlayerNode()
+        audioEngine.attachNode(audioPlayerNode)
+        
+    }
+    
+    
+    // Scheduling and playing the audio
+    func audioPlaying() {
+        audioPlayerNode.scheduleFile(audioFile, atTime: nil, completionHandler: nil)
         audioEngine.startAndReturnError(nil)
         
         audioPlayerNode.play()
+        
+    }
+    
+    @IBAction func stopAudio(sender: UIButton) {
+        
+        audioPlayer.stop()
+        audioEngine.stop()
     }
     
    }

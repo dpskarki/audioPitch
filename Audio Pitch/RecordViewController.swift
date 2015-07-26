@@ -55,6 +55,8 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate {
         stopText.enabled = true
         pauseButton.enabled = true
         pauseText.enabled = true
+        resumeButton.enabled = true
+        resumeText.enabled = true
         
         
         // finding and creating path for our audio
@@ -132,6 +134,10 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate {
         audioSession.setActive(false, error: nil)
         stopButton.enabled = false
         stopText.enabled = false
+        resumeButton.enabled = false
+        resumeText.enabled = false
+        pauseText.enabled = false
+        pauseButton.enabled = false
         
        
     }
