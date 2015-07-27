@@ -89,7 +89,7 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate {
             playSoundVC.receivedAudio = data
         }
         else {
-            println("Something wrong")
+            alertMessage()
         }
     }
     
@@ -118,7 +118,7 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate {
         var audioSession = AVAudioSession.sharedInstance()
         audioSession.setActive(false, error: nil)
         
-        
+
     }
     
     
@@ -133,6 +133,14 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate {
         startButton.enabled = state
         startText.enabled = state
         
+    }
+    
+    func alertMessage() {
+        
+        let alert = UIAlertController(title: "Sorry", message: "Something Went wrong, Please try it again!!", preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "DISMISS", style: .Default, handler: nil))
+        self.presentViewController(alert, animated: true, completion: nil)
+      
     }
 }
 
