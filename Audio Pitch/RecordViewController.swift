@@ -22,16 +22,11 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate {
     @IBOutlet weak var startButton: UIButton!
     @IBOutlet weak var startText: UILabel!
     
+    var state : Bool!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        pauseButton.enabled = false
-        resumeButton.enabled = false
-        pauseText.enabled = false
-        resumeText.enabled = false
-        stopButton.enabled = false
-        stopText.enabled = false
 
 
     }
@@ -44,6 +39,7 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate {
     
     override func viewWillAppear(animated: Bool) {
         
+        buttonState(false)
         startButton.enabled = true
         startText.enabled = true
         startText.text = "Tap to Record Voice"
@@ -53,10 +49,9 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate {
     @IBAction func startRecord(sender: UIButton) {
         startButton.enabled = false
         startText.text = "Recording in Progress"
-        stopButton.enabled = true
-        stopText.enabled = true
-        pauseButton.enabled = true
-        pauseText.enabled = true
+        buttonState(true)
+        resumeButton.enabled = false
+        resumeText.enabled = false
         
         
         
@@ -114,10 +109,7 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate {
     
     @IBAction func pauseRecord(sender: UIButton) {
         audioRecorder.pause()
-        pauseButton.enabled = false
-        pauseText.enabled = false
-        startButton.enabled = false
-        startText.enabled = false
+        buttonState(false)
         resumeButton.enabled = true
         resumeText.enabled = true
     }
@@ -125,10 +117,11 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate {
 
     @IBAction func resumeRecord(sender: UIButton) {
         audioRecorder.record()
-        resumeButton.enabled = false
-        resumeText.enabled = false
-        startButton.enabled = true
+        buttonState(false)
         startText.enabled = true
+        stopButton.enabled = true
+        stopText.enabled = true
+        
         
     }
     
@@ -138,16 +131,21 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate {
         var audioSession = AVAudioSession.sharedInstance()
         audioSession.setActive(false, error: nil)
         
-        stopButton.enabled = false
-        stopText.enabled = false
-        resumeButton.enabled = false
-        resumeText.enabled = false
-        pauseText.enabled = false
-        pauseButton.enabled = false
         
-       
     }
     
     
+    func buttonState(state: Bool) {
+        
+        stopButton.enabled = state
+        stopText.enabled = state
+        resumeButton.enabled = state
+        resumeText.enabled = state
+        pauseText.enabled = state
+        pauseButton.enabled = state
+        startButton.enabled = state
+        startText.enabled = state
+        
+    }
 }
 
