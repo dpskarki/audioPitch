@@ -21,7 +21,6 @@ class PlayViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         
         audioPlayer = AVAudioPlayer(contentsOfURL: receivedAudio.filePathUrl, error: nil)
         audioPlayer.enableRate = true
@@ -48,7 +47,7 @@ class PlayViewController: UIViewController {
     
     func playAudio(rate: Float){
         
-        audioPlayer.stop()
+        resettingAudio()
         audioPlayer.rate = rate
         
         // starting player from the begining
@@ -71,6 +70,7 @@ class PlayViewController: UIViewController {
         audioEngineFoundation()
         var changePitchEffect = AVAudioUnitTimePitch()
         changePitchEffect.pitch = pitch
+        
         audioEngine.attachNode(changePitchEffect)
         
         audioEngine.connect(audioPlayerNode, to: changePitchEffect, format: nil)
@@ -124,9 +124,7 @@ class PlayViewController: UIViewController {
     
     //starting audio engine and attaching audioPlayer node to audio engine
     func audioEngineFoundation() {
-        audioPlayer.stop()
-        audioEngine.stop()
-        audioEngine.reset()
+       resettingAudio()
         
         audioPlayerNode = AVAudioPlayerNode()
         audioEngine.attachNode(audioPlayerNode)
@@ -143,10 +141,16 @@ class PlayViewController: UIViewController {
         
     }
     
+    
     @IBAction func stopAudio(sender: UIButton) {
-        
+        resettingAudio()
+       
+    }
+    
+    func resettingAudio() {
         audioPlayer.stop()
         audioEngine.stop()
+        audioEngine.reset()
     }
     
    }

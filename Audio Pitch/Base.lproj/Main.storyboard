@@ -35,7 +35,7 @@
                                     <action selector="startRecord:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="2TH-KE-rfs"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap to Record Audio" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rNA-pm-ySZ">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rNA-pm-ySZ">
                                 <rect key="frame" x="82" y="342" width="157" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -217,7 +217,7 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p7i-Ke-c2Q">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p7i-Ke-c2Q">
                                 <rect key="frame" x="41" y="504" width="238" height="30"/>
                                 <color key="backgroundColor" red="0.56011875389222698" green="0.44044409903230364" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
@@ -235,10 +235,14 @@
                             <constraint firstAttribute="trailingMargin" secondItem="6ck-Ot-L0m" secondAttribute="trailing" constant="35" id="0Jr-Au-7zE"/>
                             <constraint firstAttribute="trailingMargin" secondItem="kAp-tP-mLg" secondAttribute="trailing" constant="25" id="12Q-bV-Ytg"/>
                             <constraint firstItem="kAp-tP-mLg" firstAttribute="top" secondItem="2DK-y6-cNz" secondAttribute="bottom" constant="30" id="4LY-Gx-7OT"/>
+                            <constraint firstAttribute="centerX" secondItem="p7i-Ke-c2Q" secondAttribute="centerX" id="5yc-QJ-If9"/>
                             <constraint firstItem="5bC-73-C2F" firstAttribute="leading" secondItem="dcy-AQ-fAf" secondAttribute="leadingMargin" constant="33" id="8bK-1h-qcW"/>
                             <constraint firstItem="uhB-AH-bdE" firstAttribute="top" secondItem="5bC-73-C2F" secondAttribute="bottom" constant="8" id="9PS-dm-KCo"/>
                             <constraint firstAttribute="trailingMargin" secondItem="7Xs-MO-dA7" secondAttribute="trailing" constant="58" id="Akv-f6-zPh"/>
+                            <constraint firstItem="T01-tJ-Dr9" firstAttribute="top" secondItem="p7i-Ke-c2Q" secondAttribute="bottom" constant="34" id="Ay6-Rv-DMR"/>
                             <constraint firstItem="SAH-cP-8ea" firstAttribute="top" secondItem="jf2-H7-MOk" secondAttribute="bottom" constant="8" id="Cui-gC-iBd"/>
+                            <constraint firstItem="p7i-Ke-c2Q" firstAttribute="leading" secondItem="dcy-AQ-fAf" secondAttribute="leadingMargin" constant="25" id="JX7-Ei-Yy2"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="p7i-Ke-c2Q" secondAttribute="trailing" constant="25" id="Kxv-X8-rmY"/>
                             <constraint firstAttribute="trailingMargin" secondItem="rnd-vC-WmR" secondAttribute="trailing" constant="47" id="WPS-jj-5rf"/>
                             <constraint firstItem="jf2-H7-MOk" firstAttribute="top" secondItem="BOP-MH-ete" secondAttribute="bottom" constant="8" id="bHm-hB-kLe"/>
                             <constraint firstItem="jf2-H7-MOk" firstAttribute="leading" secondItem="dcy-AQ-fAf" secondAttribute="leadingMargin" constant="54" id="c8K-mj-hdm"/>

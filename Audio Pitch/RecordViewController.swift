@@ -33,6 +33,7 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate {
         stopButton.enabled = false
         stopText.enabled = false
 
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -45,12 +46,13 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate {
         
         startButton.enabled = true
         startText.enabled = true
+        startText.text = "Tap to Record Voice"
     }
 
     
     @IBAction func startRecord(sender: UIButton) {
         startButton.enabled = false
-        startText.enabled = false
+        startText.text = "Recording in Progress"
         stopButton.enabled = true
         stopText.enabled = true
         pauseButton.enabled = true
@@ -82,10 +84,10 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate {
        
         //if recording successfull
         if(flag) {
+            
             //inititalizing object of our model RecordedAudio and saving title and url
-            recordedAudio = RecordedAudio()
-            recordedAudio.title = recorder.url.lastPathComponent
-            recordedAudio.filePathUrl = recorder.url
+            recordedAudio = RecordedAudio(title: recorder.url.lastPathComponent!, filePathUrl: recorder.url)
+           
             self.performSegueWithIdentifier("sendAudio", sender: recordedAudio)
         }
         else {
@@ -114,6 +116,8 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate {
         audioRecorder.pause()
         pauseButton.enabled = false
         pauseText.enabled = false
+        startButton.enabled = false
+        startText.enabled = false
         resumeButton.enabled = true
         resumeText.enabled = true
     }
@@ -123,6 +127,8 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate {
         audioRecorder.record()
         resumeButton.enabled = false
         resumeText.enabled = false
+        startButton.enabled = true
+        startText.enabled = true
         
     }
     
@@ -131,6 +137,7 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate {
         audioRecorder.stop()
         var audioSession = AVAudioSession.sharedInstance()
         audioSession.setActive(false, error: nil)
+        
         stopButton.enabled = false
         stopText.enabled = false
         resumeButton.enabled = false
@@ -140,5 +147,7 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate {
         
        
     }
+    
+    
 }
 
